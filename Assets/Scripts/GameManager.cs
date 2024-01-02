@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public void SetName()
     {
         PlayerName = nameInput.text;
-        Debug.Log(PlayerName);
         SceneManager.LoadScene("main");
     }
 }
