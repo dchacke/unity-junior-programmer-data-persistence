@@ -69,13 +69,13 @@ public class MainManager : MonoBehaviour
 
     void PrepareScoreText()
     {
-        ScoreText.text = $"Score for {GameManager.PlayerName} : 0";
+        ScoreText.text = $"Score for {GameManager.PlayerName}: 0";
     }
 
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score for {GameManager.PlayerName} : {m_Points}";
+        ScoreText.text = $"Score for {GameManager.PlayerName}: {m_Points}";
 
         if (m_Points > HighScore())
         {
