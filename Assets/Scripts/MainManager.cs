@@ -11,6 +11,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text HighScoreText;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -42,6 +43,8 @@ public class MainManager : MonoBehaviour
 
     private void Update()
     {
+        DisplayHighScore();
+
         if (!m_Started)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -73,11 +76,40 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score for {GameManager.PlayerName} : {m_Points}";
+
+        if (m_Points > HighScore())
+        {
+            StoreHighScore(m_Points, GameManager.PlayerName);
+        }
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    int HighScore()
+    {
+        return PlayerPrefs.GetInt("highScore");
+    }
+
+    string HighScoreName()
+    {
+        return PlayerPrefs.GetString("highScoreName");
+    }
+
+    void DisplayHighScore()
+    {
+        if (HighScore() > 0)
+        {
+            HighScoreText.text = $"High score: {HighScore()} (by {HighScoreName()})";
+        }
+    }
+
+    void StoreHighScore(int score, string name)
+    {
+        PlayerPrefs.SetInt("highScore", score);
+        PlayerPrefs.SetString("highScoreName", name);
     }
 }
