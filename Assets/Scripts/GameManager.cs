@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,5 +13,6 @@ public class GameManager : MonoBehaviour
     {
         PlayerName = nameInput.text;
         Debug.Log(PlayerName);
+        SceneManager.LoadScene("main");
     }
 }
